@@ -26,17 +26,6 @@ module.exports = async (req, res) => {
     return;
   }
 
-  console.log(`Checking if data is Base64 encoded`);
-  let decodedConfigFile;
-  try {
-    decodedConfigFile = Buffer.from(configFile, 'base64').toString('utf-8');
-    configFile = decodedConfigFile;
-    // Try parsing the decoded data as YAML to confirm it's valid YAML
-    console.log(`Data is Base64 encoded`);
-  } catch (error) {
-    console.log(`Data is not Base64 encoded`);
-  }
-
   console.log(`Parsing YAML`);
   let config = null;
   try {
