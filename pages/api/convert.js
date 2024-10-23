@@ -4,10 +4,18 @@ const axios = require("axios");
 module.exports = async (req, res) => {
   const url = req.query.url;
   const target = req.query.target;
+  const ua = req.query.ua;
+  
   console.log(`query: ${JSON.stringify(req.query)}`);
   if (url === undefined) {
     res.status(400).send("Missing parameter: url");
     return;
+  }
+
+  let useragent = "ClashMetaForAndroid/2.8.9.Meta Mihomo/0.16 Clash.Meta";
+
+  if (ua === "edge") {
+    useragent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0"
   }
 
   console.log(`Fetching url: ${url}`);
@@ -17,7 +25,7 @@ module.exports = async (req, res) => {
       url,
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0 ClashMetaForAndroid/2.8.9.Meta Mihomo/0.16 Clash.Meta",
+          useragent,
       },
     });
     configFile = result.data;
