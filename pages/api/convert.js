@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
       url,
       headers: {
         "User-Agent":
-          "ClashMetaForAndroid/2.8.9.Meta Mihomo/0.16 Clash.Meta",
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0 ClashMetaForAndroid/2.8.9.Meta Mihomo/0.16 Clash.Meta",
       },
     });
     configFile = result.data;
@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
 
   if (target === "surge") {
     const supportedProxies = config.proxies.filter((proxy) =>
-      ["ss", "vmess", "trojan"].includes(proxy.type)
+      ["ss", "vmess", "trojan", "vless"].includes(proxy.type)
     );
     const surgeProxies = supportedProxies.map((proxy) => {
       console.log(proxy.server);
